@@ -42,7 +42,6 @@ async def handle_messeges(reader: asyncio.StreamReader, writer: asyncio) -> None
     try:
         await send_message(writer)
         task_send: Coroutine[Any, Any, str] = asyncio.wait_for(get_message(reader), timeout=5)
-        print(type(task_send))
         await task_send
         cnt += 1
     except asyncio.TimeoutError:
